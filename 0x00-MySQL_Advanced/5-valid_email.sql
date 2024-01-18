@@ -1,6 +1,6 @@
 -- trigger for valid_email
 DELIMITER $$
-CREATE TRIGGER reset_email BEFORE UPDATE ON users
+CREATE TRIGGER reset_email AFTER UPDATE ON users
 FOR EACH ROW
 BEGIN
 	IF OLD.email != NEW.email
