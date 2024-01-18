@@ -6,7 +6,7 @@ BEGIN
 	if (SELECT COUNT(*) FROM projects WHERE name = project_name) <= 0 THEN
 		INSERT INTO projects (name) VALUES (project_name);
 	END IF;
-	SELECT project_id INTO project FROM projects WHERE name = project_name;
+	SELECT id INTO project FROM projects WHERE name = project_name;
 	INSERT INTO corrections (user_id, project_id, score) VALUES (user_id, project, score);
 END $$
 DELIMITER ;
