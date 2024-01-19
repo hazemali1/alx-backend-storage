@@ -26,8 +26,7 @@ BEGIN
 		FETCH NEXT FROM mycursor INTO myid, myweight;
 	END LOOP my_loop;
 
-	CLOSE mycursor
-	DEALLOCATE mycursor;
+	CLOSE mycursor;
 
 	SET res = sum / num;
 	UPDATE users SET average_score = res WHERE id = user_idd;
