@@ -10,9 +10,9 @@ BEGIN
 	OPEN myuser;
 	FETCH NEXT FROM myuser INTO user_idd;
 
-	my_loop: LOOP
+	my_loop_user: LOOP
         IF donee THEN
-            LEAVE my_loop;
+            LEAVE my_loop_user;
         END IF;
 
 		DECLARE num FLOAT DEFAULT 0;
@@ -45,7 +45,8 @@ BEGIN
 		UPDATE users SET average_score = res WHERE id = user_idd;
 
 		FETCH NEXT FROM myuser INTO user_idd;
-	END LOOP my_loop;
+	END LOOP my_loop_user;
+	CLOSE myuser;
 END $$
 DELIMITER ;
 
