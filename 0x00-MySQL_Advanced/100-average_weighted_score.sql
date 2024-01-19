@@ -20,7 +20,7 @@ BEGIN
             LEAVE my_loop;
         END IF;
 
-		SELECT (score * @myweight) INTO mul FROM corrections WHERE project_id = myid AND user_id = user_idd;
+		SELECT (score * myweight) INTO mul FROM corrections WHERE project_id = myid AND user_id = user_idd;
 		SET sum = sum + mul;
 		SELECT sum;
 		SELECT mul;
