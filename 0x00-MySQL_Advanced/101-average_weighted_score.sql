@@ -34,25 +34,23 @@ BEGIN
 
 
 		OPEN mycursor;
-		FETCH NEXT FROM mycursor INTO myid, myweight;
+		
 
 		my_loop: LOOP
 			IF done THEN
 				LEAVE my_loop;
 			END IF;
 
+			FETCH NEXT FROM mycursor INTO myid, myweight;
 			SELECT (score * myweight) INTO mul FROM corrections WHERE project_id = myid AND user_id = user_idd;
 			SET sum = sum + mul;
 			SET num = num + myweight;
-			FETCH NEXT FROM mycursor INTO myid, myweight;
 		END LOOP my_loop;
 
 		CLOSE mycursor;
 
 		SET res = sum / num;
 		UPDATE users SET average_score = res WHERE id = user_idd;
-		OPEN mycursor;
-        FETCH FIRST FROM mycursor INTO myid, myweight;
 
 		FETCH NEXT FROM myuser INTO user_idd;
 	END LOOP my_loop_user;
