@@ -39,6 +39,7 @@ BEGIN
 		my_loop: LOOP
 			IF done THEN
 				LEAVE my_loop;
+				SET done = 1;
 			END IF;
 
 			SELECT (score * myweight) INTO mul FROM corrections WHERE project_id = myid AND user_id = user_idd;
