@@ -1,6 +1,6 @@
 -- Average weighted score
 DELIMITER $$
-CREATE PROCEDURE ComputeAverageWeightedScoreForUser(IN user_idd INT)
+CREATE PROCEDURE ComputeAverageWeightedScoreForUser(IN user_id INT)
 BEGIN
 	DECLARE num INT DEFAULT 0;
 	DECLARE sum INT DEFAULT 0;
@@ -20,7 +20,7 @@ BEGIN
             LEAVE my_loop;
         END IF;
 
-		SELECT (score * myweight) INTO mul FROM corrections WHERE project_id = myid AND user_id = user_idd;
+		SELECT (score * myweight) INTO mul FROM corrections WHERE project_id = myid AND user_id = user_id;
 		SET sum = sum + mul;
 		SET num = num + myweight;
 		FETCH NEXT FROM mycursor INTO myid, myweight;
@@ -29,6 +29,6 @@ BEGIN
 	CLOSE mycursor;
 
 	SET res = sum / num;
-	UPDATE users SET average_score = res WHERE id = user_idd;
+	UPDATE users SET average_score = res WHERE id = user_id;
 END $$
 DELIMITER ;
