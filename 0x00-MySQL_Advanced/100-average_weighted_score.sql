@@ -26,7 +26,7 @@ BEGIN
 		FETCH NEXT FROM mycursor INTO myid, myweight;
 	END LOOP my_loop;
 
-	CLOSE mycursor;
+	CLOSE mycursor
 	DEALLOCATE mycursor;
 
 	SET res = sum / num;
