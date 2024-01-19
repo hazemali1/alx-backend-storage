@@ -6,16 +6,18 @@ BEGIN
 	DECLARE sum INT DEFAULT 0;
 	DECLARE mul INT DEFAULT 0;
 	DECLARE res INT DEFAULT 0;
+	DECLARE myid INT;
+    DECLARE myweight INT;
 
 	DECLARE mycursor CURSOR FOR SELECT id, weight FROM projects;
 	OPEN mycursor;
-	FETCH NEXT FROM mycursor INTO @myid, @myweight;
+	FETCH NEXT FROM mycursor INTO myid, myweight;
 
 	WHILE @@FETCH_STATUS = 0 DO
-		SELECT (score * @myweight) INTO mul FROM corrections WHERE project_id = @myid AND user_id = user_idd;
-		sum = sum + mul
-		num = num + @myweight
-		FETCH NEXT FROM mycursor INTO @myid, @myweight;
+		SELECT (score * @myweight) INTO mul FROM corrections WHERE project_id = myid AND user_id = user_idd;
+		SET sum = sum + mul
+		SET num = num + myweight
+		FETCH NEXT FROM mycursor INTO myid, myweight;
 	END WHILE;
 
 	CLOSE mycursor;
