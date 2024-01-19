@@ -53,7 +53,6 @@ BEGIN
 		UPDATE users SET average_score = res WHERE id = user_idd;
 		OPEN mycursor;
         FETCH FIRST FROM mycursor INTO myid, myweight;
-        CLOSE mycursor;
 
 		FETCH NEXT FROM myuser INTO user_idd;
 	END LOOP my_loop_user;
