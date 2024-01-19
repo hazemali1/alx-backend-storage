@@ -34,17 +34,17 @@ BEGIN
 
 
 		OPEN mycursor;
-		
+		FETCH NEXT FROM mycursor INTO myid, myweight;
 
 		my_loop: LOOP
 			IF done THEN
 				LEAVE my_loop;
 			END IF;
 
-			FETCH NEXT FROM mycursor INTO myid, myweight;
 			SELECT (score * myweight) INTO mul FROM corrections WHERE project_id = myid AND user_id = user_idd;
 			SET sum = sum + mul;
 			SET num = num + myweight;
+			FETCH NEXT FROM mycursor INTO myid, myweight;
 		END LOOP my_loop;
 
 		CLOSE mycursor;
