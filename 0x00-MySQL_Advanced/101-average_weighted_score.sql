@@ -14,13 +14,10 @@ BEGIN
 	DECLARE done INT DEFAULT 0;
 
 	DECLARE myuser CURSOR FOR SELECT id FROM users;
-
-	DECLARE mycursor CURSOR FOR SELECT id, weight FROM projects;
-
 	DECLARE CONTINUE HANDLER FOR NOT FOUND SET donee = 1;
 
-	
-	
+	DECLARE mycursor CURSOR FOR SELECT id, weight FROM projects;
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
 
 	OPEN myuser;
 	FETCH NEXT FROM myuser INTO user_idd;
@@ -34,8 +31,6 @@ BEGIN
         SET sum = 0;
 
 
-
-		DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
 
 		OPEN mycursor;
 		FETCH NEXT FROM mycursor INTO myid, myweight;
