@@ -3,7 +3,6 @@ DELIMITER $$
 CREATE PROCEDURE ComputeAverageWeightedScoreForUsers()
 BEGIN
 	DECLARE user_idd INT;
-	DECLARE donee INT DEFAULT 0;
 
 	DECLARE num FLOAT DEFAULT 0;
 	DECLARE sum FLOAT DEFAULT 0;
@@ -14,9 +13,9 @@ BEGIN
 	DECLARE done INT DEFAULT 0;
 
 	DECLARE mycursor CURSOR FOR SELECT id, weight FROM projects;
-	
+
 	DECLARE myuser CURSOR FOR SELECT id FROM users;
-	DECLARE CONTINUE HANDLER FOR NOT FOUND SET donee = 1;
+	
 
 	
 	DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
@@ -25,7 +24,7 @@ BEGIN
 	FETCH NEXT FROM myuser INTO user_idd;
 
 	my_loop_user: LOOP
-        IF donee THEN
+        IF done THEN
             LEAVE my_loop_user;
         END IF;
 
