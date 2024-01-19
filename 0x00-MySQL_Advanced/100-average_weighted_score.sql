@@ -22,7 +22,9 @@ BEGIN
 
 		SELECT (score * @myweight) INTO mul FROM corrections WHERE project_id = myid AND user_id = user_idd;
 		SET sum = sum + mul;
+		SELECT sum;
 		SET num = num + myweight;
+		SELECT num;
 		FETCH NEXT FROM mycursor INTO myid, myweight;
 	END LOOP my_loop;
 
