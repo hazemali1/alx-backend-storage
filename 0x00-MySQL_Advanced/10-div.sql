@@ -1,7 +1,7 @@
 -- function
+DELIMITER $$
 CREATE FUNCTION SafeDiv(a int, b int)
-	IF (b != 0) THEN
-		RETURN a / b;
-	ELSE
-		RETURN 0
-	END IF;
+BEGIN
+	RETURN IF (b != 0, a / b, 0)
+END $$
+DELIMITER ;
