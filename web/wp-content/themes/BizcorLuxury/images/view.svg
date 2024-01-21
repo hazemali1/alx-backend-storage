@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="view" opacity="0.5">
+    <g id="view-regular">
+      <rect id="bg" width="24" height="24" opacity="0"/>
+      <path id="view-regular-2" data-name="view-regular" d="M11,30a2,2,0,1,1-2,2,2,2,0,0,1,2-2m0-2a4,4,0,1,0,4,4,4,4,0,0,0-4-4m0-2a9.533,9.533,0,0,1,8.875,6,9.564,9.564,0,0,1-17.75,0A9.533,9.533,0,0,1,11,26m0-2A11.565,11.565,0,0,0,0,32a11.563,11.563,0,0,0,22,0,11.565,11.565,0,0,0-11-8" transform="translate(1 -20)"/>
+    </g>
+  </g>
+</svg>
