@@ -16,3 +16,4 @@ if __name__ == "__main__":
     print("{} status check".format(collection.count_documents({"method": "GET", "path": "/status"})))
     print("IPs:")
     print("\t172.31.63.67: {}".format(collection.count_documents({"ip": "172.31.63.67"})))
+    print(collection.aggregate([{"$group": {"_id": "$ip"}}, {"$limit": 10}]))
