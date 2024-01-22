@@ -1,5 +1,0 @@
-User-agent: *
-Allow: / 
-
-Sitemap: https://www.anaheimvacationhouse.com/property-sitemap.xml
-Sitemap: https://www.anaheimvacationhouse.com/sitemap_index.xml
