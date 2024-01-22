@@ -16,4 +16,14 @@ if __name__ == "__main__":
     print("{} status check".format(collection.count_documents({"method": "GET", "path": "/status"})))
     print("IPs:")
     print("\t172.31.63.67: {}".format(collection.count_documents({"ip": "172.31.63.67"})))
-    print(list(collection.aggregate([{"$group": {"_id": "$ip"}}, {"$limit": 10}])))
+    print(list(collection.aggregate([{
+    "$addFields": {
+      "count": { "$count": "$ip" }
+    }}, {
+    "$project": {
+      "ip": 1,
+      "count": 1
+    }
+  },
+  {"$sort": {"count": -1}},
+  {"$limit": 10}])))
