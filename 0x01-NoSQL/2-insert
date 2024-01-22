@@ -1,2 +1,2 @@
 // insert data
-db.school.insertMany({"name": "Holberton school"})
+db.school.insertOne({"name": "Holberton school"})
