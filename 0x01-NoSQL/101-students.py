@@ -5,7 +5,17 @@
 def top_students(mongo_collection):
     """top students"""
     obj = [
-        {"$group":{"_id": "$name", "name": "$name"}},
+        {
+    "$addFields": {
+      "averageScore": { "$avg": "$topics.score" }
+    }
+  },
+  {
+    "$project": {
+      "name": 1,
+      "averageScore": 1
+    }
+  },
         {"$sort": {"averageScore": -1}}
     ]
     return list(mongo_collection.aggregate(obj))
