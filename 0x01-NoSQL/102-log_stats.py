@@ -16,19 +16,9 @@ if __name__ == "__main__":
     print("{} status check".format(collection.count_documents({"method": "GET", "path": "/status"})))
     print("IPs:")
     print("\t172.31.63.67: {}".format(collection.count_documents({"ip": "172.31.63.67"})))
-    print(list(collection.aggregate([
-{
-    "$project": {
-      "ip": 1,
-      "count": 1
-    }
-  },
-  {"$sort": {"count": -1}},
-  {"$limit": 10}])))
-    # for i in collection.aggregate([{"$project": {"ip": 1,}}]):
-    #     print(i.get("ip"))
-    print(list(collection.aggregate([
+    for i in list(collection.aggregate([
 		{"$group": {"_id": "$ip", "count": {"$sum": 1}}},
         {"$sort": {"count": -1}},
 		{"$limit": 10}
-	])))
+	])):
+        print("\t{}: {}".format(i.get("_id"), i.get("count")))
