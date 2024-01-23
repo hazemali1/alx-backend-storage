@@ -25,4 +25,5 @@ if __name__ == "__main__":
   },
   {"$sort": {"count": -1}},
   {"$limit": 10}])))
-    
+    for i in collection.aggregate([{"$project": {"ip": 1,}}]):
+        print(i)
