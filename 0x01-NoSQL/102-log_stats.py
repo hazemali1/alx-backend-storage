@@ -15,7 +15,6 @@ if __name__ == "__main__":
     print("\tmethod DELETE: {}".format(collection.count_documents({"method": "DELETE"})))
     print("{} status check".format(collection.count_documents({"method": "GET", "path": "/status"})))
     print("IPs:")
-    print("\t172.31.63.67: {}".format(collection.count_documents({"ip": "172.31.63.67"})))
     for i in list(collection.aggregate([
 		{"$group": {"_id": "$ip", "count": {"$sum": 1}}},
         {"$sort": {"count": -1}},
