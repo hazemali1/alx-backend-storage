@@ -29,5 +29,5 @@ if __name__ == "__main__":
     #     print(i.get("ip"))
     print(list(collection.aggregate([
 		{"$group": {"_id": "$ip", "count": {"$sum": 1}}},
-        {"$sort": {"count": -1}}
+        {"$sort": {"count": 1}}
 	])))
