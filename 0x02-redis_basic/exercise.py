@@ -16,3 +16,20 @@ class Cache():
         uid = str(uuid.uuid4())
         self._redis.set(uid, data)
         return uid
+
+    def get(self, key: str, fn: typing.Optional[typing.Callable] = None) -> typing.Any:
+        """get value"""
+        if callable(fn):
+            return fn(self._redis.get(key))
+        if fn is str:
+            return self.get_str(self._redis.get(key))
+        if fn is int:
+            return self.get_int(self._redis.get(key))
+
+    def get_str(self, key: bytes) -> str:
+        """strin"""
+        return key.decode("utf-8")
+
+    def get_int(self, key: bytes) -> str:
+        """integer"""
+        return int(key)
