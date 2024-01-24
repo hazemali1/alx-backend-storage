@@ -25,6 +25,7 @@ class Cache():
             return self.get_str(self._redis.get(key))
         if fn is int:
             return self.get_int(self._redis.get(key))
+        return self._redis.get(key)
 
     def get_str(self, key: bytes) -> str:
         """strin"""
