@@ -6,6 +6,17 @@ import typing
 from functools import wraps
 
 
+def call_history(method: typing.Callable) -> typing.Callable:
+    """history"""
+    @wraps(method)
+    def wrapper(self: Any, *args) -> str:
+        """wrapper functool.wraps"""
+        self._redis.rpush("{}:inputs".format(method.__qualname__), str(args))
+        self._redis.rpush("{}:outputs".format(method.__qualname__), method(self, *args))
+        return method(self, *args)
+    return wrapper
+
+
 def count_calls(method: typing.Callable) -> typing.Callable:
     """count calls for cache class"""
     @wraps(method)
@@ -15,6 +26,7 @@ def count_calls(method: typing.Callable) -> typing.Callable:
         return method(self, *args, **kwds)
     return wrapper
 
+
 class Cache():
     """Cache class"""
     def __init__(self):
@@ -23,6 +35,7 @@ class Cache():
         self._redis.flushdb()
 
     @count_calls
+    @call_history
     def store(self, data: typing.Union[str, bytes,  int,  float]) -> str:
         uid = str(uuid.uuid4())
         self._redis.set(uid, data)
