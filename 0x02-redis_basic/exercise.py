@@ -8,7 +8,7 @@ import typing
 def count_calls(method: typing.Callable) -> typing.Callable:
     """count calls for cache class"""
     @wraps(method)
-    def wrapper(self, *args, **kwds):
+    def wrapper(self: typing.Any, *args, **kwds) -> str:
         self._redis.incr(method.__qualname__)
         return method(self, *args, **kwds)
     return wrapper
