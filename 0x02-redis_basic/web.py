@@ -2,15 +2,13 @@
 """redis"""
 import redis
 import requests
-from bs4 import BeautifulSoup
-
 
 
 def count_urls(html_content):
-    soup = BeautifulSoup(html_content, 'html.parser')
-    urls = [a.get('href') for a in soup.find_all('a', href=True)]
-    print(urls)
-    return len(urls)
+    # soup = BeautifulSoup(html_content, 'html.parser')
+    # urls = [a.get('href') for a in soup.find_all('a', href=True)]
+    # print(urls)
+    return len(html_content)
 
 
 def get_page(url: str) -> str:
