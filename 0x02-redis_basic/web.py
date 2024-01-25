@@ -20,7 +20,8 @@ def get_page(url: str) -> str:
     r = redis.Redis()
     for i in range(len(d)):
         print(r.get("count:{}".format(d[i])))
-        r.setex("count:{}".format(d[i]), 10, len(d))
+        if r.get("count:{}".format(d[i])) is not None:
+            r.setex("count:{}".format(d[i]), 10, 0)
         r.incr("count:{}".format(d[i]))
         print(d[i])
         print(r.get("count:{}".format(d[i])))
