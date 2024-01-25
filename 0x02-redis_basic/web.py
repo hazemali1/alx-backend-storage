@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+"""redis"""
 import redis
 import requests
 
