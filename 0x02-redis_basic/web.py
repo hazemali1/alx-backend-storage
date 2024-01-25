@@ -9,7 +9,7 @@ def count_urls(html_content):
     # urls = [a.get('href') for a in soup.find_all('a', href=True)]
     # print(urls)
     s = 0
-    if 'href="https://www.google.com"' in html_content:
+    if 'href="https://www.google.co"' in html_content:
         s += 1
     print(s)
     print(type(html_content))
