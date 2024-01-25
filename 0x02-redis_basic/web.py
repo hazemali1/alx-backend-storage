@@ -10,7 +10,7 @@ def count_urls(html_content):
     url_pattern = re.compile(r'href=["\'](https?://\S+?)["\']', re.IGNORECASE)
     urls = re.findall(url_pattern, html_content)
 
-    return len(urls)
+    return urls
 
 
 def get_page(url: str) -> str:
@@ -18,9 +18,9 @@ def get_page(url: str) -> str:
     s = requests.get(url).text
     d = count_urls(s)
     r = redis.Redis()
-    print(r.get("count:\{url\}"))
-    r.setex("count:\{url\}", 10, d)
-    print(r.get("count:\{url\}"))
+    print(r.get("count:{}".format(d[0])))
+    r.setex("count:{}".format(d[0]), 10, d)
+    print(r.get("count:{}".format(d[0])))
     return s
 
 
