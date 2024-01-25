@@ -8,7 +8,8 @@ from functools import wraps
 
 def replay(call: typing.Callable) -> None:
     """replay store"""
-    print("{} was called {} times:".format(call.__qualname__, redis.Redis().get(call.__qualname__).decode('utf-8')))
+    print("{} was called {} times:".format(call.__qualname__,
+     redis.Redis().get(call.__qualname__).decode('utf-8')))
     s = []
     d = []
     for i in redis.Redis().lrange("{}:inputs".format(call.__qualname__), 0, -1):
