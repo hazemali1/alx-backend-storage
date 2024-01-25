@@ -18,13 +18,12 @@ def get_page(url: str) -> str:
     s = requests.get(url).text
     d = count_urls(s)
     r = redis.Redis()
-    print(r.get("count:{}".format(d[0])))
-    r.setex("count:{}".format(d[0]), 10, len(d))
-    r.setex("count:{}".format("http://google.com"), 10, "http://google.com")
-    r.setex("http://google.com", 10, "http://google.com")
-    r.incr("count:{}".format(d[0]))
-    print(d[0])
-    print(r.get("count:{}".format(d[0])))
+    for i in range(len(d)):
+        print(r.get("count:{}".format(d[i])))
+        r.setex("count:{}".format(d[i]), 10, len(d))
+        r.incr("count:{}".format(d[i]))
+        print(d[i])
+        print(r.get("count:{}".format(d[i])))
     return s
 
 
