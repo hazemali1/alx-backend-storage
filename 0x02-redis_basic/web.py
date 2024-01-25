@@ -12,11 +12,7 @@ def count_urls(html_content):
     url_pattern = re.compile(r'href=["\'](https?://\S+?)["\']', re.IGNORECASE)
     urls = re.findall(url_pattern, html_content)
     print(urls)
-
-    s = 0
-    if 'href="https://www.google.com"' in html_content:
-        s += 1
-    print(s)
+    print(len(urls))
     print(type(html_content))
     return len(html_content)
 
