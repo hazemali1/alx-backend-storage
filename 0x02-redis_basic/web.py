@@ -11,4 +11,4 @@ def get_page(url: str) -> str:
 
 if __name__ == "__main__":
     """main"""
-    get_page('http://slowwly.robertomurray.co.uk')
+    print(get_page('http://slowwly.robertomurray.co.uk'))
