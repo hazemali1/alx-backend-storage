@@ -6,6 +6,19 @@ import typing
 from functools import wraps
 
 
+def replay(call: Callable) -> None:
+    """replay store"""
+    print("{} was called {} times:".format(call.__qualname__, redis.Redis().get(call.__qualname__).decode('utf-8')))
+    s = []
+    d = []
+    for i in redis.Redis().lrange("{}:inputs".format(call.__qualname__), 0, -1):
+        s.append(i.decode('utf-8'))
+    for i in redis.Redis().lrange("{}:outputs".format(call.__qualname__), 0, -1):
+        d.append(i.decode('utf-8'))
+    for i, j in zip(s, d):
+        print("{}(*{}) -> {}".format(call.__qualname__, i, j))
+
+
 def call_history(method: typing.Callable) -> typing.Callable:
     """history"""
     @wraps(method)
