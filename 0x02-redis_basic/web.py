@@ -8,6 +8,8 @@ def count_urls(html_content):
     # soup = BeautifulSoup(html_content, 'html.parser')
     # urls = [a.get('href') for a in soup.find_all('a', href=True)]
     # print(urls)
+    if "href" in html_content:
+        print("hehehehehehehehehhehhehhehehehehehehehehehehe")
     print(type(html_content))
     return len(html_content)
 
