@@ -14,7 +14,7 @@ def count_urls(html_content):
 def get_page(url: str) -> str:
     """get page"""
     s = requests.get(url).text
-    count_urls(s)
+    print(count_urls(s))
     return s
 
 
