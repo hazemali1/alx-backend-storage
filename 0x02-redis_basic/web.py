@@ -5,17 +5,19 @@ import requests
 from bs4 import BeautifulSoup
 
 
+
 def count_urls(html_content):
     soup = BeautifulSoup(html_content, 'html.parser')
-    anchor_tags = soup.find_all('a')
-    num_urls = len(anchor_tags)
-    print(html_content)
-    return num_urls
+    urls = [a.get('href') for a in soup.find_all('a', href=True)]
+    print(urls)
+    return len(urls)
 
 
 def get_page(url: str) -> str:
     """get page"""
-    return count_urls(requests.get(url).text)
+    s = requests.get(url).text
+    count_urls(s)
+    return s
 
 
 if __name__ == "__main__":
