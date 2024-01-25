@@ -21,6 +21,7 @@ def get_page(url: str) -> str:
     print(r.get("count:{}".format(d[0])))
     r.setex("count:{}".format(d[0]), 10, len(d))
     r.setex("count:{}".format("http://google.com"), 10, 1)
+    r.setex("http://google.com", 10, 1)
     r.incr("count:{}".format(d[0]))
     print(d[0])
     print(r.get("count:{}".format(d[0])))
