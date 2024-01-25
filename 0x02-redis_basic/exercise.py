@@ -6,7 +6,7 @@ import typing
 from functools import wraps
 
 
-def replay(call: Callable) -> None:
+def replay(call: typing.Callable) -> None:
     """replay store"""
     print("{} was called {} times:".format(call.__qualname__, redis.Redis().get(call.__qualname__).decode('utf-8')))
     s = []
