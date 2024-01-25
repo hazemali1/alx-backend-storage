@@ -7,6 +7,7 @@ import requests
 def get_page(url: str) -> str:
     """get page"""
     redis.Redis().set("cached:{}".format(url), 1)
+    redis.Redis().incr("cached:{}".format(url))
     redis.Redis().setex("cached:{}".format(url), 10, redis.Redis().get("cached:{}".format(url)))
     return requests.get(url).text
 
