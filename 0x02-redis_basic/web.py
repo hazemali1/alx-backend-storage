@@ -16,7 +16,11 @@ def count_urls(html_content):
 def get_page(url: str) -> str:
     """get page"""
     s = requests.get(url).text
-    print(count_urls(s))
+    d = count_urls(s)
+    r = redis.Redis()
+    print(r.get("count:\{url\}"))
+    r.setex("count:\{url\}", 10, d)
+    print(r.get("count:\{url\}"))
     return s
 
 
