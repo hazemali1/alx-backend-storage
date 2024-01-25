@@ -13,10 +13,10 @@ def replay(call: typing.Callable) -> None:
     s = []
     d = []
     for i in redis.Redis().lrange("{}:inputs".format(call.__qualname__),
-	                              0, -1):
+                                  0, -1):
         s.append(i.decode('utf-8'))
     for i in redis.Redis().lrange("{}:outputs".format(call.__qualname__),
-	                              0, -1):
+                                  0, -1):
         d.append(i.decode('utf-8'))
     for i, j in zip(s, d):
         print("{}(*{}) -> {}".format(call.__qualname__, i, j))
@@ -59,7 +59,7 @@ class Cache():
         return uid
 
     def get(self, key: str,
-	        fn: typing.Optional[typing.Callable] = None) -> typing.Any:
+            fn: typing.Optional[typing.Callable] = None) -> typing.Any:
         """get value"""
         if callable(fn):
             return fn(self._redis.get(key))
