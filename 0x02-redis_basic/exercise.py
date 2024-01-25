@@ -11,8 +11,8 @@ def call_history(method: typing.Callable) -> typing.Callable:
     @wraps(method)
     def wrapper(self: typing.Any, *args) -> str:
         """wrapper functool.wraps"""
-        self._redis.rpush("{}:inputs".format(method.__qualname__), str(args))
         s = method(self, *args)
+        self._redis.rpush("{}:inputs".format(method.__qualname__), str(args))
         self._redis.rpush("{}:outputs".format(method.__qualname__), s)
         return s
     return wrapper
