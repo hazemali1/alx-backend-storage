@@ -20,6 +20,7 @@ def get_page(url: str) -> str:
     r = redis.Redis()
     print(r.get("count:{}".format(d[0])))
     r.setex("count:{}".format(d[0]), 10, len(d))
+    print(d[0])
     print(r.get("count:{}".format(d[0])))
     return s
 
