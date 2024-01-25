@@ -6,15 +6,11 @@ import re
 
 
 def count_urls(html_content):
-    # soup = BeautifulSoup(html_content, 'html.parser')
-    # urls = [a.get('href') for a in soup.find_all('a', href=True)]
-    # print(urls)
+    """count urls"""
     url_pattern = re.compile(r'href=["\'](https?://\S+?)["\']', re.IGNORECASE)
     urls = re.findall(url_pattern, html_content)
-    print(urls)
-    print(len(urls))
-    print(type(html_content))
-    return len(html_content)
+
+    return len(urls)
 
 
 def get_page(url: str) -> str:
