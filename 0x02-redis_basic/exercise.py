@@ -9,7 +9,7 @@ from functools import wraps
 def call_history(method: typing.Callable) -> typing.Callable:
     """history"""
     @wraps(method)
-    def wrapper(self: Any, *args) -> str:
+    def wrapper(self: typing.Any, *args) -> str:
         """wrapper functool.wraps"""
         self._redis.rpush("{}:inputs".format(method.__qualname__), str(args))
         self._redis.rpush("{}:outputs".format(method.__qualname__), method(self, *args))
